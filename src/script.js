@@ -11,12 +11,7 @@ const emailOrUsernameEl = document.getElementById("emailOrUsername");
 const passwordEl = document.getElementById("password");
 
 // socket.io connection
-const socket = io("http://127.0.0.1:5000", {
-  cors: {
-    origin: ["https://socketio-tester.netlify.app"],
-    methods: ["GET", "POST", "PATCH", "DELETE"],
-  },
-});
+const socket = io("http://127.0.0.1:5000");
 
 socket.on("connect", () => {
   console.log(socket.id);
