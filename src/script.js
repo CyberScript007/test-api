@@ -24,6 +24,7 @@ socket.on("connect", () => {
 console.log(socket);
 
 socket.on("new-notification", (notification) => {
+  console.log("hello");
   console.log(notification);
 });
 
