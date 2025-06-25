@@ -13,7 +13,7 @@ const passwordEl = document.getElementById("password");
 // socket.io connection
 const socket = io("http://127.0.0.1:5000", {
   cors: {
-    origin: ["http://localhost:1234"],
+    origin: ["https://socketio-tester.netlify.app"],
     methods: ["GET", "POST", "PATCH", "DELETE"],
   },
 });
