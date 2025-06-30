@@ -15,10 +15,11 @@ const socket = io("http://127.0.0.1:5000");
 
 socket.on("connect", () => {
   console.log(socket.id);
-  socket.on("new-notification", (notification) => {
-    console.log("hello");
-    console.log(notification);
-  });
+});
+
+socket.on("new-notification", (notification) => {
+  console.log("hello");
+  console.log(notification);
 });
 console.log(socket);
 
@@ -83,9 +84,12 @@ loginForm.addEventListener("submit", async (e) => {
 
   user = await getUser({ emailOrUsername, password });
 
-  socket.emit("join", user?._id);
+  if (user && user._id) {
+    console.log(user._id);
+    socket.emit("join", user._id);
+  }
 
-  console.log(user);
+  console.log(user.user);
 });
 
 btnLike.addEventListener("click", async function () {
