@@ -84,9 +84,9 @@ loginForm.addEventListener("submit", async (e) => {
 
   user = await getUser({ emailOrUsername, password });
 
-  if (user && user._id) {
-    console.log(user._id);
-    socket.emit("join", user._id);
+  if (user.user && user.user._id) {
+    console.log(user.user._id);
+    socket.emit("join", user.user._id);
   }
 
   console.log(user.user);
