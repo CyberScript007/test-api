@@ -10,6 +10,8 @@ const loginForm = document.getElementById("loginForm");
 const emailOrUsernameEl = document.getElementById("emailOrUsername");
 const passwordEl = document.getElementById("password");
 
+let user;
+
 // socket.io connection
 const socket = io("http://127.0.0.1:5000");
 
@@ -17,15 +19,16 @@ socket.on("connect", () => {
   console.log(socket.id);
 });
 
-socket.on("new-notification", (notification) => {
-  console.log("hello");
-  console.log(notification);
-});
-console.log(socket);
+if (user) {
+  console.log("haha");
+  socket.on("new-notification", (notification) => {
+    console.log("hello");
+    console.log(notification);
+  });
+  console.log(socket);
+}
 
 // notification logic
-let user;
-
 btnCancel.addEventListener("click", function () {
   modal.classList.add("hidden");
 });
