@@ -89,7 +89,7 @@ loginForm.addEventListener("submit", async (e) => {
     socket.emit("join", user._id);
   }
 
-  console.log(user && user._id);
+  console.log(user.user);
   console.log(user);
 });
 
