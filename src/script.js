@@ -19,14 +19,11 @@ socket.on("connect", () => {
   console.log(socket.id);
 });
 
-if (user) {
-  console.log("haha");
-  socket.on("new-notification", (notification) => {
-    console.log("hello");
-    console.log(notification);
-  });
-  console.log(socket);
-}
+socket.on("new-notification", (notification) => {
+  console.log("hello");
+  console.log(notification);
+});
+console.log(socket);
 
 // notification logic
 btnCancel.addEventListener("click", function () {
