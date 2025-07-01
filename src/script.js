@@ -25,6 +25,8 @@ socket.on("new-notification", (notification) => {
 });
 console.log(socket);
 
+socket.emit("laga", "kaka ronaldo");
+
 // notification logic
 btnCancel.addEventListener("click", function () {
   modal.classList.add("hidden");
