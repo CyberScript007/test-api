@@ -211,6 +211,16 @@ label {
   right: .3rem;
 }
 
+.notification {
+  flex-direction: column;
+  gap: 2rem;
+  display: flex;
+}
+
+.notification__read {
+  width: 15rem;
+}
+
 .hidden {
   display: none;
 }

@@ -257,6 +257,16 @@ label {
   cursor: pointer;
 }
 
+.notification {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.notification__read {
+  width: 15rem;
+}
+
 .hidden {
   display: none;
 }

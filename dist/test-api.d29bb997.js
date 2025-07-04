@@ -678,6 +678,7 @@ const modal = document.querySelector(".modal");
 const loginForm = document.getElementById("loginForm");
 const emailOrUsernameEl = document.getElementById("emailOrUsername");
 const passwordEl = document.getElementById("password");
+let user, rr;
 // socket.io connection
 const socket = (0, _socketIoClient.io)("http://127.0.0.1:5000");
 socket.on("connect", ()=>{
@@ -686,10 +687,11 @@ socket.on("connect", ()=>{
 socket.on("new-notification", (notification)=>{
     console.log("hello");
     console.log(notification);
+    rr = 2;
 });
 console.log(socket);
+socket.emit("laga", "kaka ronaldo");
 // notification logic
-let user;
 btnCancel.addEventListener("click", function() {
     modal.classList.add("hidden");
 });
@@ -737,11 +739,12 @@ loginForm.addEventListener("submit", async (e)=>{
         emailOrUsername,
         password
     });
-    if (user && user._id) {
-        console.log(user._id);
-        socket.emit("join", user._id);
+    if (user.user && user.user._id) {
+        console.log(user.user._id);
+        socket.emit("join", user.user._id.toString());
     }
     console.log(user.user);
+    console.log(user);
 });
 btnLike.addEventListener("click", async function() {
     try {
@@ -757,6 +760,8 @@ btnLike.addEventListener("click", async function() {
         console.log(err);
     }
 });
+if (rr === 2) console.log("hello agba akin");
+console.log(rr);
 
 },{"socket.io-client":"24OPJ","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","axios":"kooH4"}],"24OPJ":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

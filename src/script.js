@@ -10,7 +10,7 @@ const loginForm = document.getElementById("loginForm");
 const emailOrUsernameEl = document.getElementById("emailOrUsername");
 const passwordEl = document.getElementById("password");
 
-let user;
+let user, rr;
 
 // socket.io connection
 const socket = io("http://127.0.0.1:5000");
@@ -22,6 +22,7 @@ socket.on("connect", () => {
 socket.on("new-notification", (notification) => {
   console.log("hello");
   console.log(notification);
+  rr = 2;
 });
 console.log(socket);
 
@@ -111,3 +112,9 @@ btnLike.addEventListener("click", async function () {
     console.log(err);
   }
 });
+
+if (rr === 2) {
+  console.log("hello agba akin");
+}
+
+console.log(rr);
