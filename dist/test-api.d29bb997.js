@@ -688,6 +688,7 @@ socket.on("new-notification", (notification)=>{
     console.log("hello");
     console.log(notification);
     rr = 2;
+    console.log(rr);
 });
 console.log(socket);
 socket.emit("laga", "kaka ronaldo");

@@ -261,10 +261,97 @@ label {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  position: relative;
 }
 
 .notification__read {
-  width: 15rem;
+  width: 17rem;
+  align-self: flex-start;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  border: 0;
+  border-radius: 0.5rem;
+  color: #fff;
+  background-color: #333;
+  position: relative;
+  cursor: pointer;
+}
+
+.notification__read:focus {
+  outline: none;
+}
+
+.svg__container {
+  position: relative;
+}
+
+.svg__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: #fff;
+}
+
+.svg__badge {
+  position: absolute;
+  top: -0.2rem;
+  right: -0.2rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100%;
+  background-color: red;
+  border: 0.1rem solid #000;
+  z-index: 1000;
+}
+
+.notification__tooltip {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(-10%, -50%);
+  display: flex;
+  align-items: center;
+  background-color: pink;
+  border-radius: 2rem;
+  padding: 0.8rem 1.2rem;
+  gap: 1rem;
+  background-image: radial-gradient(
+    circle farthest-corner at -1.2% 43.9%,
+    rgba(252, 146, 32, 1) 16.1%,
+    rgba(255, 4, 4, 1) 74.3%
+  );
+}
+
+/* .notification__tooltip::before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 2.8rem;
+  left: 0.6rem;
+  transform: rotate(-70deg);
+
+  border-right: 0.7rem solid red;
+  border-bottom: 0.7rem solid transparent;
+  border-top: 0.7rem solid transparent;
+  border-radius: 1rem;
+} */
+
+.notification__group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.svg__tooltip-icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  fill: #fff;
 }
 
 .hidden {

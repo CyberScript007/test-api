@@ -215,10 +215,78 @@ label {
   flex-direction: column;
   gap: 2rem;
   display: flex;
+  position: relative;
 }
 
 .notification__read {
-  width: 15rem;
+  text-transform: capitalize;
+  color: #fff;
+  cursor: pointer;
+  background-color: #333;
+  border: 0;
+  border-radius: .5rem;
+  align-self: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 17rem;
+  padding: .8rem 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  position: relative;
+}
+
+.notification__read:focus {
+  outline: none;
+}
+
+.svg__container {
+  position: relative;
+}
+
+.svg__icon {
+  fill: #fff;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.svg__badge {
+  z-index: 1000;
+  background-color: red;
+  border: .1rem solid #000;
+  border-radius: 100%;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  top: -.2rem;
+  right: -.2rem;
+}
+
+.notification__tooltip {
+  background-color: pink;
+  background-image: radial-gradient(circle at -1.2% 43.9%, #fc9220 16.1%, #ff0404 74.3%);
+  border-radius: 2rem;
+  align-items: center;
+  gap: 1rem;
+  padding: .8rem 1.2rem;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(-10%, -50%);
+}
+
+.notification__group {
+  color: #fff;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1.3rem;
+  display: flex;
+}
+
+.svg__tooltip-icon {
+  fill: #fff;
+  width: 1.9rem;
+  height: 1.9rem;
 }
 
 .hidden {
