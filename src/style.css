@@ -289,10 +289,16 @@ label {
   position: relative;
 }
 
-.svg__icon {
+.svg__icon-container {
   width: 2.5rem;
   height: 2.5rem;
   fill: #fff;
+}
+
+.svg__icon {
+  width: inherit;
+  height: inherit;
+  fill: inherit;
 }
 
 .svg__badge {
