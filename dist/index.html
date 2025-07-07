@@ -1,13 +1,6 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test api</title>
-    <link rel="stylesheet" href="/test-api.2cdaf7bc.css">
-    <script type="module" defer="" src="/test-api.d29bb997.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <header class="header">
+<!DOCTYPE html><html lang=en><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><title>Test api</title><link rel=stylesheet href=/test-api.11beb44d.css><script type=module defer src=/test-api.470a3926.js></script><body>
+    <div class=container>
+      <header class=header>
         <button class="btn btn--like">like</button>
 
         <button class="btn btn--tag">tag</button>
@@ -19,55 +12,47 @@
         <button class="btn btn--modal">login</button><button>
       </button></header>
 
-      <form class="comment">
-        <input type="text" placeholder="Comment on post" class="comment__text" id="comment__text">
+      <form class=comment>
+        <input placeholder="Comment on post" class=comment__text id=comment__text>
 
         <button class="btn btn--comment">comment</button>
       </form>
     </div>
 
-    <!-- notification -->
-    <section class="notification">
-      <button class="notification__read" id="read-notification">
-        <div class="svg__container">
-          <svg class="svg__icon">
-            <use xlink:href="/sprite.ece088bb.svg#icon-heart"></use>
-          </svg>
-          <span class="svg__badge hidden"></span> 
+    
+    <section class=notification>
+      <button class=notification__read id=read-notification>
+        <div class=svg__container>
+          <svg class=svg__icon><use xlink:href=/sprite.c5b0f01c.svg#icon-heart /></svg>
+           
         </div>
         <span>notifications</span>
       </button>
 
-      <!-- notification tooltip -->
-      <div class="notification__tooltip hidden">
-        <!-- <div class="notification__group">
-          <svg class="svg__tooltip-icon">
-            <use xlink:href="./img/sprite.svg#icon-message-circle"></use>
-          </svg>
-          <span class="notification_count">0</span>
-        </div> -->
+      
+      <div class="hidden notification__tooltip">
+        
         
       </div>
 
     </section>
 
-    <!-- modal -->
-    <section class="modal hidden">
-      <form class="loginForm" id="loginForm">
-        <button class="btn--cancel">×</button>
+    
+    <section class="hidden modal">
+      <form class=loginForm id=loginForm>
+        <button class=btn--cancel>×</button>
         <h1>login</h1>
-        <div class="loginForm__group">
-          <label for="emailOrUsername">Email or Username</label>
-          <input type="text" class="loginForm__text loginForm__text--username" id="emailOrUsername">
+        <div class=loginForm__group>
+          <label for=emailOrUsername>Email or Username</label>
+          <input class="loginForm__text loginForm__text--username" id=emailOrUsername>
         </div>
 
-        <div class="loginForm__group">
-          <label for="password">Password</label>
-          <input type="password" class="loginForm__text loginForm__text--password" id="password">
+        <div class=loginForm__group>
+          <label for=password>Password</label>
+          <input type=password class="loginForm__text loginForm__text--password" id=password>
         </div>
-        <button class="btn--login" type="submit">login</button>
+        <button class=btn--login>login</button>
       </form>
     </section>
   
 
-</body></html>
