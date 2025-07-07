@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import axios from "axios";
 
-import "url:./img/sprite.svg";
+import icon from "url:./img/sprite.svg";
 
 const btnModal = document.querySelector(".btn--modal");
 const btnCancel = document.querySelector(".btn--cancel");
