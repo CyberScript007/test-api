@@ -1,4 +1,4 @@
-// import "url:../img/sprite.svg";
+import icon from "url:../img/sprite.svg";
 import { io } from "socket.io-client";
 import axios from "axios";
 
