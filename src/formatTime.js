@@ -24,3 +24,5 @@ const formatTime = (date) => {
       break;
   }
 };
+
+export default formatTime;
