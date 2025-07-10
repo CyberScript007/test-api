@@ -22,7 +22,7 @@ socket.on("connect", () => {
 
 socket.on("new-notification", (notification) => {
   notificationUI = notification;
-  console.log(notification);
+  console.log("hello notification", notification);
 });
 console.log(socket);
 
@@ -95,7 +95,7 @@ loginForm.addEventListener("submit", async (e) => {
   }
 
   console.log(user.user);
-  console.log(user);
+  // console.log(user);
 });
 
 btnLike.addEventListener("click", async function () {
