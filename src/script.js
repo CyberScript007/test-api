@@ -139,7 +139,7 @@ btnLike.addEventListener("click", async function () {
 
     const res = await axios({
       method: "POST",
-      url: "http://127.0.0.1:5000/api/v1/post/686feb9c24a1d75d0346a376/like",
+      url: "http://127.0.0.1:5000/api/v1/post/68700deddb516a55c468b055/like",
       data: null,
       withCredentials: true,
     });
