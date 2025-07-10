@@ -78,7 +78,8 @@ const getUser = async (userId) => {
     });
 
     console.log("user", res);
-    return res.data.data.photo;
+    const { photo, username } = res.data.data;
+    return { photo, username };
   } catch (err) {
     console.error(err);
   }
@@ -86,7 +87,10 @@ const getUser = async (userId) => {
 
 const updateNotificationUI = async function () {
   const { post, sender, createdAt, type } = notificationUI;
-  await getPost(post);
+  const postImage = await getPost(post);
+  console.log(postImage);
+  const user = await getUser(sender);
+  console.log(user);
   // const user = loginUser(sender);
   // console.log("sender user", user);
 };
