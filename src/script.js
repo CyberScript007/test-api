@@ -23,12 +23,31 @@ socket.on("connect", () => {
 socket.on("new-notification", (notification) => {
   notificationUI = notification;
   console.log("hello notification", notification);
+  updateNotificationUI();
 });
 console.log(socket);
 
-socket.emit("laga", "kaka ronaldo");
+// get a post
+const getPost = async (post) => {
+  try {
+    const res = await axios({
+      url: `http://127.0.0.1:5000/api/v1/post/${post}`,
+      method: "GET",
+      withCredentials: true,
+    });
 
-const updateUI = function () {};
+    console.log("post", res);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const updateNotificationUI = function () {
+  const { post, sender, createdAt, type } = notificationUI;
+  getPost(post);
+  const user = getUser(sender);
+  console.log("sender user", user);
+};
 
 // notification logic
 btnCancel.addEventListener("click", function () {
