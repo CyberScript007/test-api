@@ -11,7 +11,7 @@ const loginForm = document.getElementById("loginForm");
 const emailOrUsernameEl = document.getElementById("emailOrUsername");
 const passwordEl = document.getElementById("password");
 
-let user, rr;
+let user, notificationUI;
 
 // socket.io connection
 const socket = io("http://127.0.0.1:5000");
@@ -21,14 +21,14 @@ socket.on("connect", () => {
 });
 
 socket.on("new-notification", (notification) => {
-  console.log("hello");
+  notificationUI = notification;
   console.log(notification);
-  rr = 2;
-  console.log(rr);
 });
 console.log(socket);
 
 socket.emit("laga", "kaka ronaldo");
+
+const updateUI = function () {};
 
 // notification logic
 btnCancel.addEventListener("click", function () {
@@ -114,9 +114,3 @@ btnLike.addEventListener("click", async function () {
     console.log(err);
   }
 });
-
-if (rr === 2) {
-  console.log("hello agba akin");
-}
-
-console.log(rr);
