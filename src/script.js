@@ -1,5 +1,5 @@
 import icon from "url:../img/sprite.svg";
-import formatTime from "./formatTime";
+import formatTimeAgo from "./formatTimeAgo";
 import { io } from "socket.io-client";
 import axios from "axios";
 
@@ -124,7 +124,7 @@ const updateNotificationUI = async function () {
             <span class="notification__message-text"
               >${outputMessage(type)}</span
             >
-            <span class="notification__message-date">${formatTime(
+            <span class="notification__message-date">${formatTimeAgo(
               createdAt
             )}</span>
           </div>

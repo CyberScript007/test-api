@@ -1,4 +1,4 @@
-const formatTime = (date) => {
+const formatTimeAgo = (date) => {
   const now = new Date();
   const pastDate = new Date(date);
 
@@ -25,4 +25,4 @@ const formatTime = (date) => {
   }
 };
 
-export default formatTime;
+export default formatTimeAgo;
