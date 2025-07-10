@@ -27,6 +27,32 @@ socket.on("new-notification", (notification) => {
 });
 console.log(socket);
 
+const loginUser = async (data) => {
+  const username = isEmail(data.emailOrUsername) || data.emailOrUsername;
+  const email = isEmail(data.emailOrUsername) && data.emailOrUsername;
+  const password = data.password;
+
+  const obj = isEmail(data.emailOrUsername) ? { email } : { username };
+
+  try {
+    const res = await axios({
+      method: "POST",
+      url: "http://127.0.0.1:5000/api/v1/user/login",
+      withCredentials: true,
+      data: {
+        ...obj,
+        password,
+      },
+    });
+
+    console.log(res);
+
+    return res.data.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // get a post
 const getPost = async (post) => {
   try {
@@ -36,16 +62,32 @@ const getPost = async (post) => {
       withCredentials: true,
     });
 
-    console.log("post", res);
+    return res.data.data.media[0].url;
   } catch (err) {
     console.log(err);
+  }
+};
+
+// get user
+const getUser = async (userId) => {
+  try {
+    const res = await axios({
+      method: "GET",
+      url: `http://127.0.0.1:5000/api/v1/user/${userId}`,
+      withCredentials: true,
+    });
+
+    console.log("user", res);
+    return res.data.data.photo;
+  } catch (err) {
+    console.error(err);
   }
 };
 
 const updateNotificationUI = async function () {
   const { post, sender, createdAt, type } = notificationUI;
   await getPost(post);
-  // const user = getUser(sender);
+  // const user = loginUser(sender);
   // console.log("sender user", user);
 };
 
@@ -73,32 +115,6 @@ const isEmail = (email) => {
   return regex.test(email);
 };
 
-const getUser = async (data) => {
-  const username = isEmail(data.emailOrUsername) || data.emailOrUsername;
-  const email = isEmail(data.emailOrUsername) && data.emailOrUsername;
-  const password = data.password;
-
-  const obj = isEmail(data.emailOrUsername) ? { email } : { username };
-
-  try {
-    const res = await axios({
-      method: "POST",
-      url: "http://127.0.0.1:5000/api/v1/user/login",
-      withCredentials: true,
-      data: {
-        ...obj,
-        password,
-      },
-    });
-
-    console.log(res);
-
-    return res.data.data;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const emailOrUsername = emailOrUsernameEl.value;
@@ -106,7 +122,7 @@ loginForm.addEventListener("submit", async (e) => {
 
   if (!emailOrUsername || !password) return;
 
-  user = await getUser({ emailOrUsername, password });
+  user = await loginUser({ emailOrUsername, password });
 
   if (user.user && user.user._id) {
     console.log(user.user._id);
@@ -123,7 +139,7 @@ btnLike.addEventListener("click", async function () {
 
     const res = await axios({
       method: "POST",
-      url: "http://127.0.0.1:5000/api/v1/post/686fc25bd7a7eb66b28dc58a/like",
+      url: "http://127.0.0.1:5000/api/v1/post/686feb9c24a1d75d0346a376/like",
       data: null,
       withCredentials: true,
     });
