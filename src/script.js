@@ -93,6 +93,7 @@ const getUser = async (userId) => {
 const outputMessage = (type) => {
   switch (type) {
     case "like":
+      console.log("liked your photo");
       return `liked your photo`;
 
     case "tag":
@@ -102,6 +103,8 @@ const outputMessage = (type) => {
       break;
   }
 };
+const rrr = outputMessage("like");
+console.log(rrr);
 
 const updateNotificationUI = async function () {
   const { post, sender, createdAt, type } = notificationUI;
@@ -121,9 +124,9 @@ const updateNotificationUI = async function () {
             <span class="notification__message-username"
               ><strong>${username}</strong></span
             >
-            <span class="notification__message-text"
-              >hello</span
-            >
+            <span class="notification__message-text">${outputMessage(
+              type
+            )}</span>
             <span class="notification__message-date">${formatTimeAgo(
               createdAt
             )}</span>
