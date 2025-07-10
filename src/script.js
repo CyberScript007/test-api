@@ -42,11 +42,11 @@ const getPost = async (post) => {
   }
 };
 
-const updateNotificationUI = function () {
+const updateNotificationUI = async function () {
   const { post, sender, createdAt, type } = notificationUI;
-  getPost(post);
-  const user = getUser(sender);
-  console.log("sender user", user);
+  await getPost(post);
+  // const user = getUser(sender);
+  // console.log("sender user", user);
 };
 
 // notification logic
