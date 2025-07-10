@@ -122,7 +122,7 @@ const updateNotificationUI = async function () {
               ><strong>${username}</strong></span
             >
             <span class="notification__message-text"
-              >${outputMessage(type)}</span
+              >hello</span
             >
             <span class="notification__message-date">${formatTimeAgo(
               createdAt
