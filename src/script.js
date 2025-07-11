@@ -51,6 +51,8 @@ socket.on("new-notification", (notification) => {
   } else {
     svgBadge.classList.add("hidden");
   }
+
+  console.log(notificationUI[notification.type] > 0);
 });
 console.log(socket);
 
