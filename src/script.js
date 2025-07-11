@@ -61,6 +61,8 @@ socket.on("new-notification", async (notification) => {
   if (notificationCount[notification.type] > 0) {
     svgBadge.classList.remove("hidden");
   }
+
+  console.log(notificationUI);
 });
 console.log(socket);
 
@@ -158,8 +160,6 @@ const getSvgIcon = (type) => {
 
 // notification tooltip
 const updateNotificationTooltip = function (notificationCount) {
-  const { type } = notificationUI;
-
   const markUp = notificationUI
     .map((notification) => {
       // notificationCount[notification.type] += 1;
