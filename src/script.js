@@ -45,6 +45,12 @@ socket.on("new-notification", (notification) => {
   setTimeout(() => {
     notificationTooltip.classList.add("hidden");
   }, 5000);
+
+  if (notificationUI[notification.type] > 0) {
+    svgBadge.classList.remove("hidden");
+  } else {
+    svgBadge.classList.add("hidden");
+  }
 });
 console.log(socket);
 
@@ -160,6 +166,13 @@ const updateNotificationTooltip = function () {
 // notification read
 notificationRead.addEventListener("click", function () {
   updateNotificationUI();
+  notificationCount = {
+    like: 0,
+    mention: 0,
+    comment: 0,
+    tag: 0,
+    follow: 0,
+  };
 });
 
 // update notification UI
