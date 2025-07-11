@@ -21,7 +21,7 @@ const svgBadge = document.querySelector(".svg__badge");
 
 let user, notificationUI;
 
-const notificationCount[type] += 1 = {
+const notificationCount = {
   like: 0,
   comment: 0,
   mention: 0,
@@ -40,10 +40,10 @@ socket.on("new-notification", (notification) => {
   notificationUI = notification;
   console.log("hello notification", notification);
   updateNotificationTooltip();
-  notificationTooltip.classList.remove("hidden")
+  notificationTooltip.classList.remove("hidden");
 
   setTimeout(() => {
-    notificationTooltip.classList.add("hidden")
+    notificationTooltip.classList.add("hidden");
   }, 5000);
 });
 console.log(socket);
@@ -144,7 +144,7 @@ const getSvgIcon = (type) => {
 const updateNotificationTooltip = function () {
   const { type } = notificationUI;
 
-  notificationCount[type] += 1
+  notificationCount[type] += 1;
 
   const html = `
         <section class="notification__group">
@@ -154,7 +154,7 @@ const updateNotificationTooltip = function () {
 
           <span class="notification_count">${notificationCount[type]}</span>
         </section>`;
-   notificationTooltip.insertAdjacentHTML("afterbegin", html)     
+  notificationTooltip.insertAdjacentHTML("afterbegin", html);
 };
 
 // notification read
