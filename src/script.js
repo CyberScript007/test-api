@@ -261,7 +261,7 @@ btnTag.addEventListener("click", async function () {
       data: {
         tags: [
           {
-            user: "686feb9c24a1d75d0346a37",
+            user: "686feb9c24a1d75d0346a376",
             x: 0.4,
             y: 0.6,
           },
