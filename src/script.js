@@ -19,7 +19,11 @@ const notificationRead = document.querySelector(".notification__read");
 const notificationTooltip = document.querySelector(".notification__tooltip");
 const svgBadge = document.querySelector(".svg__badge");
 
-let user, notificationUI;
+let user,
+  notificationUI = [],
+  postImage,
+  photo,
+  username;
 
 let notificationCount = {
   like: 0,
@@ -36,8 +40,8 @@ socket.on("connect", () => {
   console.log(socket.id);
 });
 
-socket.on("new-notification", (notification) => {
-  notificationUI = notification;
+socket.on("new-notification", async (notification) => {
+  notificationUI.push(notification);
   console.log("hello notification", notification);
   notificationTooltip.classList.remove("hidden");
   updateNotificationTooltip();
@@ -46,10 +50,13 @@ socket.on("new-notification", (notification) => {
   //   notificationTooltip.classList.add("hidden");
   // }, 30000);
 
+  postImage = await getPost(notification.post);
+  const userDetails = await getUser(notification.sender);
+  photo = userDetails.photo;
+  username = userDetails.username;
+
   if (notificationCount[notification.type] > 0) {
     svgBadge.classList.remove("hidden");
-  } else {
-    svgBadge.classList.add("hidden");
   }
 });
 console.log(socket);
@@ -150,19 +157,26 @@ const getSvgIcon = (type) => {
 const updateNotificationTooltip = function () {
   const { type } = notificationUI;
 
-  notificationCount[type] += 1;
+  const markUp = notificationUI
+    .map((notification) => {
+      notificationCount[notification.type] += 1;
 
-  const html = `
-        <section class="notification__group">
-          <svg class="svg__tooltip-icon">
-            <use xlink:href="${icon}${getSvgIcon(type)}"></use>
-          </svg>
+      return `
+            <section class="notification__group">
+              <svg class="svg__tooltip-icon">
+                <use xlink:href="${icon}${getSvgIcon(notification.type)}"></use>
+              </svg>
 
-          <span class="notification_count">${notificationCount[type]}</span>
-        </section>`;
+              <span class="notification_count">${
+                notificationCount[notification.type]
+              }</span>
+            </section>
+          `;
+    })
+    .join(" ");
 
   // notificationTooltip.innerHTML = ``;
-  notificationTooltip.insertAdjacentHTML("afterbegin", html);
+  notificationTooltip.insertAdjacentHTML("afterbegin", markUp);
 };
 
 // notification read
@@ -175,42 +189,41 @@ notificationRead.addEventListener("click", function () {
     tag: 0,
     follow: 0,
   };
+  svgBadge.classList.add("hidden");
 });
 
 // update notification UI
 const updateNotificationUI = async function () {
-  const { post, sender, createdAt, type } = notificationUI;
-  const postImage = await getPost(post);
-  const { photo, username } = await getUser(sender);
-  // const user = loginUser(sender);
-  // console.log("sender user", user);
-
-  const html = `
-        <div class="notification__message-group">
-          <img
-            src=${photo}
-            class="notification__message-profile__img"
-            alt="user profile picture"
-          />
-          <div class="notification__message-content">
-            <span class="notification__message-username"
-              ><strong>${username}</strong></span
-            >
-            <span class="notification__message-text">${outputMessage(
-              type
-            )}</span>
-            <span class="notification__message-date">${formatTimeAgo(
-              createdAt
-            )}</span>
-          </div>
-          ${
-            type === "follow"
-              ? `<buttton class="btn--follow-back">follow back</buttton>`
-              : `<div class="notification__message_post-image">
-            <img src=${postImage} alt="post image" />
-          </div>`
-          }
-        </div>`;
+  const html = notificationUI
+    .map((notification) => {
+      return `
+          <div class="notification__message-group">
+            <img
+              src=${photo}
+              class="notification__message-profile__img"
+              alt="user profile picture"
+            />
+            <div class="notification__message-content">
+              <span class="notification__message-username"
+                ><strong>${username}</strong></span
+              >
+              <span class="notification__message-text">${outputMessage(
+                notification.type
+              )}</span>
+              <span class="notification__message-date">${formatTimeAgo(
+                notification.createdAt
+              )}</span>
+            </div>
+            ${
+              notification.type === "follow"
+                ? `<buttton class="btn--follow-back">follow back</buttton>`
+                : `<div class="notification__message_post-image">
+              <img src=${postImage} alt="post image" />
+            </div>`
+            }
+          </div>`;
+    })
+    .join(" ");
 
   notificationMessageContainer.insertAdjacentHTML("afterbegin", html);
 };
