@@ -261,6 +261,9 @@ label {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.notification__container {
   position: relative;
 }
 
@@ -277,7 +280,6 @@ label {
   border-radius: 0.5rem;
   color: #fff;
   background-color: #333;
-  position: relative;
   cursor: pointer;
 }
 

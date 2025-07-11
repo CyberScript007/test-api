@@ -35,25 +35,27 @@
 
     <!-- notification -->
     <section class="notification">
-      <button class="notification__read" id="read-notification">
-        <div class="svg-container">
-          <svg class="svg__icon">
-            <use xlink:href="./img/sprite.svg#icon-heart"></use>
-          </svg>
-          <span class="svg__badge hidden"></span>
+      <div class="notification__container">
+        <button class="notification__read" id="read-notification">
+          <div class="svg-container">
+            <svg class="svg__icon">
+              <use xlink:href="./img/sprite.svg#icon-heart"></use>
+            </svg>
+            <span class="svg__badge"></span>
+          </div>
+          <span>notifications</span>
+        </button>
+
+        <!-- notification tooltip -->
+        <div class="notification__tooltip">
+          <section class="notification__group">
+            <svg class="svg__tooltip-icon">
+              <use xlink:href="./img/sprite.svg#icon-message-circle"></use>
+            </svg>
+
+            <span class="notification_count">2</span>
+          </section>
         </div>
-        <span>notifications</span>
-      </button>
-
-      <!-- notification tooltip -->
-      <div class="notification__tooltip hidden">
-        <!-- <section class="notification__group">
-          <svg class="svg__tooltip-icon">
-            <use xlink:href="./img/sprite.svg#icon-message-circle"></use>
-          </svg>
-
-          <span class="notification_count">2</span>
-        </section> -->
       </div>
 
       <!-- notification message -->

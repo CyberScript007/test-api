@@ -44,7 +44,7 @@ socket.on("new-notification", (notification) => {
 
   setTimeout(() => {
     notificationTooltip.classList.add("hidden");
-  }, 5000);
+  }, 30000);
 
   if (notificationUI[notification.type] > 0) {
     svgBadge.classList.remove("hidden");
@@ -134,7 +134,7 @@ const getSvgIcon = (type) => {
       return "#icon-heart1";
 
     case "tag":
-      return "#user-solid-square";
+      return "#icon-user-solid-square";
 
     case "comment":
     case "mention":
