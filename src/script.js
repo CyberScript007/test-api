@@ -178,7 +178,7 @@ const updateNotificationTooltip = function (notificationCount) {
     })
     .join(" ");
 
-  // notificationTooltip.innerHTML = ``;
+  notificationTooltip.innerHTML = ``;
   notificationTooltip.insertAdjacentHTML("afterbegin", markUp);
 };
 
@@ -228,6 +228,7 @@ const updateNotificationUI = async function () {
     })
     .join(" ");
 
+  notificationMessageContainer.innerHTML = "";
   notificationMessageContainer.insertAdjacentHTML("afterbegin", html);
 };
 
