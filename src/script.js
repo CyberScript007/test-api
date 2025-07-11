@@ -252,6 +252,7 @@ btnLike.addEventListener("click", async function () {
 
 btnTag.addEventListener("click", async function () {
   try {
+    console.log(user);
     if (!user) return;
 
     const res = await axios({
@@ -266,6 +267,7 @@ btnTag.addEventListener("click", async function () {
           },
         ],
       },
+      withCredentials: true,
     });
 
     console.log(res);
