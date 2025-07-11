@@ -193,6 +193,7 @@ notificationRead.addEventListener("click", function () {
     follow: 0,
   };
   svgBadge.classList.add("hidden");
+  notificationTooltip.classList.add("hidden");
 });
 
 // update notification UI
