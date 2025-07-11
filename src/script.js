@@ -53,6 +53,7 @@ socket.on("new-notification", (notification) => {
   }
 
   console.log(notificationUI[notification.type]);
+  console.log(notification.type);
 });
 console.log(socket);
 
@@ -162,6 +163,8 @@ const updateNotificationTooltip = function () {
 
           <span class="notification_count">${notificationCount[type]}</span>
         </section>`;
+
+  notificationTooltip.innerHTML = ``;
   notificationTooltip.insertAdjacentHTML("afterbegin", html);
 };
 
