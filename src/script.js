@@ -39,12 +39,12 @@ socket.on("connect", () => {
 socket.on("new-notification", (notification) => {
   notificationUI = notification;
   console.log("hello notification", notification);
-  updateNotificationTooltip();
   notificationTooltip.classList.remove("hidden");
+  updateNotificationTooltip();
 
-  setTimeout(() => {
-    notificationTooltip.classList.add("hidden");
-  }, 30000);
+  // setTimeout(() => {
+  //   notificationTooltip.classList.add("hidden");
+  // }, 30000);
 
   if (notificationUI[notification.type] > 0) {
     svgBadge.classList.remove("hidden");
