@@ -6,6 +6,7 @@ import axios from "axios";
 const btnModal = document.querySelector(".btn--modal");
 const btnCancel = document.querySelector(".btn--cancel");
 const btnLike = document.querySelector(".btn--like");
+const btnTag = document.querySelector(".btn--tag");
 
 const modal = document.querySelector(".modal");
 const loginForm = document.getElementById("loginForm");
@@ -14,8 +15,19 @@ const passwordEl = document.getElementById("password");
 const notificationMessageContainer = document.querySelector(
   ".notification__message"
 );
+const notificationRead = document.querySelector(".notification__read");
+const notificationTooltip = document.querySelector(".notification__tooltip");
+const svgBadge = document.querySelector(".svg__badge");
 
 let user, notificationUI;
+
+const notificationObj = {
+  like: 0,
+  comment: 0,
+  mention: 0,
+  tag: 0,
+  follow: 0,
+};
 
 // socket.io connection
 const socket = io("http://127.0.0.1:5000");
@@ -27,7 +39,6 @@ socket.on("connect", () => {
 socket.on("new-notification", (notification) => {
   notificationUI = notification;
   console.log("hello notification", notification);
-  updateNotificationUI();
 });
 console.log(socket);
 
@@ -93,7 +104,6 @@ const getUser = async (userId) => {
 const outputMessage = (type) => {
   switch (type) {
     case "like":
-      console.log("liked your photo");
       return `liked your photo`;
 
     case "tag":
@@ -103,9 +113,47 @@ const outputMessage = (type) => {
       break;
   }
 };
-const rrr = outputMessage("like");
-console.log(rrr);
 
+const getSvgIcon = (type) => {
+  switch (type) {
+    case "like":
+      return "#icon-heart1";
+
+    case "tag":
+      return "#user-solid-square";
+
+    case "comment":
+    case "mention":
+      return "#icon-message-circle";
+
+    case "follow":
+      return "#icon-person";
+
+    default:
+      return "please use a valid svg icon";
+  }
+};
+
+// notification tooltip
+const updateNotificationTooltip = function () {
+  const { type } = notificationUI;
+
+  const html = `
+        <section class="notification__group">
+          <svg class="svg__tooltip-icon">
+            <use xlink:href="${icon}${getSvgIcon(type)}"></use>
+          </svg>
+
+          <span class="notification_count">2</span>
+        </section>`;
+};
+
+// notification read
+notificationRead.addEventListener("click", function () {
+  updateNotificationUI();
+});
+
+// update notification UI
 const updateNotificationUI = async function () {
   const { post, sender, createdAt, type } = notificationUI;
   const postImage = await getPost(post);
@@ -194,6 +242,30 @@ btnLike.addEventListener("click", async function () {
       url: "http://127.0.0.1:5000/api/v1/post/68700deddb516a55c468b055/like",
       data: null,
       withCredentials: true,
+    });
+
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+btnTag.addEventListener("click", async function () {
+  try {
+    if (!user) return;
+
+    const res = await axios({
+      method: "POST",
+      url: "http://127.0.0.1:5000/api/v1/post/68712af37303476f72367a09/tagged",
+      data: {
+        tags: [
+          {
+            user: "686feb9c24a1d75d0346a37",
+            x: 0.4,
+            y: 0.6,
+          },
+        ],
+      },
     });
 
     console.log(res);
