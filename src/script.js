@@ -44,7 +44,10 @@ socket.on("new-notification", async (notification) => {
   notificationUI.push(notification);
   console.log("hello notification", notification);
   notificationTooltip.classList.remove("hidden");
-  updateNotificationTooltip();
+
+  notificationCount[notification.type] += 1;
+
+  updateNotificationTooltip(notificationCount);
 
   // setTimeout(() => {
   //   notificationTooltip.classList.add("hidden");
@@ -154,12 +157,12 @@ const getSvgIcon = (type) => {
 };
 
 // notification tooltip
-const updateNotificationTooltip = function () {
+const updateNotificationTooltip = function (notificationCount) {
   const { type } = notificationUI;
 
   const markUp = notificationUI
     .map((notification) => {
-      notificationCount[notification.type] += 1;
+      // notificationCount[notification.type] += 1;
 
       return `
             <section class="notification__group">
