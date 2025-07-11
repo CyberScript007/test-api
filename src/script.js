@@ -21,7 +21,7 @@ const svgBadge = document.querySelector(".svg__badge");
 
 let user, notificationUI;
 
-const notificationCount = {
+let notificationCount = {
   like: 0,
   comment: 0,
   mention: 0,
@@ -52,7 +52,7 @@ socket.on("new-notification", (notification) => {
     svgBadge.classList.add("hidden");
   }
 
-  console.log(notificationUI[notification.type] > 0);
+  console.log(notificationUI[notification.type]);
 });
 console.log(socket);
 
