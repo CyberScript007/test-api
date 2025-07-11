@@ -46,14 +46,11 @@ socket.on("new-notification", (notification) => {
   //   notificationTooltip.classList.add("hidden");
   // }, 30000);
 
-  if (notificationUI[notification.type] > 0) {
+  if (notificationCount[notification.type] > 0) {
     svgBadge.classList.remove("hidden");
   } else {
     svgBadge.classList.add("hidden");
   }
-
-  console.log(notificationUI[notification.type]);
-  console.log(notification.type);
 });
 console.log(socket);
 
@@ -164,7 +161,7 @@ const updateNotificationTooltip = function () {
           <span class="notification_count">${notificationCount[type]}</span>
         </section>`;
 
-  notificationTooltip.innerHTML = ``;
+  // notificationTooltip.innerHTML = ``;
   notificationTooltip.insertAdjacentHTML("afterbegin", html);
 };
 
