@@ -18,12 +18,15 @@ const notificationMessageContainer = document.querySelector(
 const notificationRead = document.querySelector(".notification__read");
 const notificationTooltip = document.querySelector(".notification__tooltip");
 const svgBadge = document.querySelector(".svg__badge");
+const formComment = document.querySelector(".comment");
+const commentText = document.querySelector(".comment__text");
 
 let user,
   notificationUI = [],
   postImage,
   photo,
-  username;
+  username,
+  commentValue;
 
 let notificationCount = {
   like: 0,
@@ -124,6 +127,26 @@ const getUser = async (userId) => {
   }
 };
 
+// create a comment post
+const createCommentPost = async (comment) => {
+  try {
+    const res = await axios({
+      method: "POST",
+      url: `http://127.0.0.1:5000/api/v1/post/68726b16de134db6077cf19c/comments`,
+      data: {
+        text: comment,
+      },
+      withCredentials: true,
+    });
+
+    console.log("comment", res.data);
+
+    return res.data;
+  } catch (err) {
+    console.log("comment post error", err);
+  }
+};
+
 // output message text
 const outputMessage = (type) => {
   switch (type) {
@@ -132,6 +155,9 @@ const outputMessage = (type) => {
 
     case "tag":
       return `tagged you in a post`;
+
+    case "comment":
+      return `commented:`;
 
     default:
       break;
@@ -213,7 +239,7 @@ const updateNotificationUI = async function () {
               >
               <span class="notification__message-text">${outputMessage(
                 notification.type
-              )}</span>
+              )} ${notification.type === "comment" ? commentValue : ""}</span>
               <span class="notification__message-date">${formatTimeAgo(
                 notification.createdAt
               )}</span>
@@ -316,4 +342,12 @@ btnTag.addEventListener("click", async function () {
   } catch (err) {
     console.log(err);
   }
+});
+
+formComment.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  commentValue = commentText.value;
+  await createCommentPost(commentValue);
+  console.log("hello comment");
 });
