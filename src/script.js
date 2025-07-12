@@ -48,7 +48,6 @@ socket.on("new-notification", async (notification) => {
   notificationUI = [];
   notificationUI.push(notification);
   console.log("hello notification", notification);
-  notificationTooltip.classList.remove("hidden");
 
   notificationCount[notification.type] += 1;
 
@@ -65,6 +64,12 @@ socket.on("new-notification", async (notification) => {
 
   if (notificationCount[notification.type] > 0) {
     svgBadge.classList.remove("hidden");
+  }
+
+  if (notificationUI.length > 0) {
+    notificationTooltip.classList.remove("hidden");
+  } else {
+    notificationTooltip.classList.add("hidden");
   }
 
   console.log(notificationUI);
@@ -220,8 +225,9 @@ notificationRead.addEventListener("click", function () {
     follow: 0,
   };
   svgBadge.classList.add("hidden");
+
+  if (notificationTooltip.classList.contains("hidden")) return;
   notificationTooltip.classList.add("hidden");
-  cle;
 });
 
 // update notification UI
