@@ -145,7 +145,7 @@ const createCommentPost = async (comment) => {
       withCredentials: true,
     });
 
-    console.log("comment", res.data);
+    console.log("comment", res.data.data.text);
     return res.data.data.text;
   } catch (err) {
     console.log("comment post error", err);
