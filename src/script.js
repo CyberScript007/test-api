@@ -45,7 +45,6 @@ socket.on("connect", () => {
 });
 
 socket.on("new-notification", async (notification) => {
-  notificationUI = [];
   notificationUI.push(notification);
   console.log("hello notification", notification);
 
