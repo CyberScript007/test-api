@@ -26,7 +26,8 @@ let user,
   postImage,
   photo,
   username,
-  commentValue;
+  commentValue,
+  clearTimeInterval;
 
 let notificationCount = {
   like: 0,
@@ -44,6 +45,7 @@ socket.on("connect", () => {
 });
 
 socket.on("new-notification", async (notification) => {
+  notificationUI = [];
   notificationUI.push(notification);
   console.log("hello notification", notification);
   notificationTooltip.classList.remove("hidden");
@@ -52,9 +54,9 @@ socket.on("new-notification", async (notification) => {
 
   updateNotificationTooltip(notificationCount);
 
-  // setTimeout(() => {
-  //   notificationTooltip.classList.add("hidden");
-  // }, 30000);
+  //  clearTimeInterval = setTimeout(() => {
+  //     notificationTooltip.classList.add("hidden");
+  //   }, 20000);
 
   postImage = await getPost(notification.post);
   const userDetails = await getUser(notification.sender);
@@ -140,8 +142,7 @@ const createCommentPost = async (comment) => {
     });
 
     console.log("comment", res.data);
-
-    return res.data;
+    return res.data.data.text;
   } catch (err) {
     console.log("comment post error", err);
   }
@@ -220,6 +221,7 @@ notificationRead.addEventListener("click", function () {
   };
   svgBadge.classList.add("hidden");
   notificationTooltip.classList.add("hidden");
+  cle;
 });
 
 // update notification UI
@@ -346,8 +348,6 @@ btnTag.addEventListener("click", async function () {
 
 formComment.addEventListener("submit", async function (e) {
   e.preventDefault();
-
-  commentValue = commentText.value;
-  await createCommentPost(commentValue);
-  console.log("hello comment");
+  if (!user) return;
+  commentValue = await createCommentPost(commentText.value);
 });
