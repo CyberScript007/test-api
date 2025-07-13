@@ -50,7 +50,7 @@ socket.on("new-notification", async (notification) => {
 
   notificationCount[notification.type] += 1;
 
-  updateNotificationTooltip(notificationCount);
+  updateNotificationTooltip(notificationCount, commentValue);
 
   //  clearTimeInterval = setTimeout(() => {
   //     notificationTooltip.classList.add("hidden");
@@ -245,9 +245,16 @@ const updateNotificationUI = async function () {
               <span class="notification__message-username"
                 ><strong>${username}</strong></span
               >
-              <span class="notification__message-text">${outputMessage(
-                notification.type
-              )} ${notification.type === "comment" ? commentValue : ""}</span>
+              <span class="notification__message-text">
+                ${outputMessage(notification.type)}" " 
+                ${notification.type === "comment" && notification.commentText} 
+                ${
+                  notification.type === "mention" &&
+                  notification.typeMention === "post"
+                    ? `you in a post.  ${notification.postCaption}`
+                    : `you in a comment ${notification.commentText}`
+                }
+              </span>
               <span class="notification__message-date">${formatTimeAgo(
                 notification.createdAt
               )}</span>
@@ -356,5 +363,4 @@ formComment.addEventListener("submit", async function (e) {
   e.preventDefault();
   if (!user) return;
   commentValue = await createCommentPost(commentText.value);
-  console.log("form comment", commentValue);
 });
