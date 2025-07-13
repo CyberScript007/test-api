@@ -164,6 +164,9 @@ const outputMessage = (type) => {
     case "comment":
       return `commented:`;
 
+    case "mention":
+      return "mentioned ";
+
     default:
       break;
   }
@@ -246,13 +249,21 @@ const updateNotificationUI = async function () {
                 ><strong>${username}</strong></span
               >
               <span class="notification__message-text">
-                ${outputMessage(notification.type)}" " 
-                ${notification.type === "comment" && notification.commentText} 
+                ${outputMessage(notification.type)} 
+                ${
+                  notification.type === "comment"
+                    ? notification.commentText
+                    : ""
+                } 
                 ${
                   notification.type === "mention" &&
                   notification.typeMention === "post"
                     ? `you in a post.  ${notification.postCaption}`
-                    : `you in a comment ${notification.commentText}`
+                    : notification.type === "mention" &&
+                      notification.typeMention === "comment"
+                    ? notification.type === "mention" &&
+                      notification.typeMention === "post"
+                    : ""
                 }
               </span>
               <span class="notification__message-date">${formatTimeAgo(
