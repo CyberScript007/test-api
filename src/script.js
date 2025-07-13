@@ -231,6 +231,7 @@ notificationRead.addEventListener("click", function () {
 
 // update notification UI
 const updateNotificationUI = async function () {
+  console.log("update ui", commentValue);
   const html = notificationUI
     .map((notification) => {
       return `
@@ -355,4 +356,5 @@ formComment.addEventListener("submit", async function (e) {
   e.preventDefault();
   if (!user) return;
   commentValue = await createCommentPost(commentText.value);
+  console.log("form comment", commentValue);
 });
