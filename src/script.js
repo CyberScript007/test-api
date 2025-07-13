@@ -261,8 +261,7 @@ const updateNotificationUI = async function () {
                     ? `you in a post.  ${notification.postCaption}`
                     : notification.type === "mention" &&
                       notification.typeMention === "comment"
-                    ? notification.type === "mention" &&
-                      notification.typeMention === "post"
+                    ? `you in a comment. ${notification.commentText}`
                     : ""
                 }
               </span>
