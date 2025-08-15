@@ -376,4 +376,5 @@ formComment.addEventListener("submit", async function (e) {
   e.preventDefault();
   if (!user) return;
   commentValue = await createCommentPost(commentText.value);
+  console.log("hello bro baba");
 });
