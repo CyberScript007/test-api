@@ -71,9 +71,10 @@ socket.on("new-notification", async (notification) => {
   //   notificationTooltip.classList.add("hidden");
   // }
 
-  console.log(notificationUI);
+  // console.log(notificationUI);
 });
 console.log(socket);
+console.log(notificationUI);
 
 const loginUser = async (data) => {
   const username = isEmail(data.emailOrUsername) || data.emailOrUsername;
