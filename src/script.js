@@ -138,7 +138,7 @@ const createCommentPost = async (comment) => {
   try {
     const res = await axios({
       method: "POST",
-      url: `http://127.0.0.1:5000/api/v1/post/68726b16de134db6077cf19c/comments`,
+      url: `http://127.0.0.1:5000/api/v1/post/688cd33cc0f5b2f9e2b73a7c/comments`,
       data: {
         text: comment,
       },
@@ -332,7 +332,7 @@ btnLike.addEventListener("click", async function () {
 
     const res = await axios({
       method: "POST",
-      url: "http://127.0.0.1:5000/api/v1/post/68700deddb516a55c468b055/like",
+      url: "http://127.0.0.1:5000/api/v1/post/688cd33cc0f5b2f9e2b73a7c/like",
       data: null,
       withCredentials: true,
     });
