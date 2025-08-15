@@ -71,10 +71,10 @@ socket.on("new-notification", async (notification) => {
   //   notificationTooltip.classList.add("hidden");
   // }
 
-  // console.log(notificationUI);
+  console.log(notificationUI);
 });
 console.log(socket);
-console.log(notificationUI);
+// console.log(notificationUI);
 
 const loginUser = async (data) => {
   const username = isEmail(data.emailOrUsername) || data.emailOrUsername;
@@ -317,6 +317,8 @@ loginForm.addEventListener("submit", async (e) => {
   if (!emailOrUsername || !password) return;
 
   user = await loginUser({ emailOrUsername, password });
+
+  console.log(user, "user login form");
 
   if (user.user && user.user._id) {
     console.log(user.user._id);
