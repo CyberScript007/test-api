@@ -56,20 +56,20 @@ socket.on("new-notification", async (notification) => {
   //     notificationTooltip.classList.add("hidden");
   //   }, 20000);
 
-  postImage = await getPost(notification.post);
-  const userDetails = await getUser(notification.sender);
-  photo = userDetails.photo;
-  username = userDetails.username;
+  // postImage = await getPost(notification.post);
+  // const userDetails = await getUser(notification.sender);
+  // photo = userDetails.photo;
+  // username = userDetails.username;
 
-  if (notificationCount[notification.type] > 0) {
-    svgBadge.classList.remove("hidden");
-  }
+  // if (notificationCount[notification.type] > 0) {
+  //   svgBadge.classList.remove("hidden");
+  // }
 
-  if (notificationUI.length > 0) {
-    notificationTooltip.classList.remove("hidden");
-  } else {
-    notificationTooltip.classList.add("hidden");
-  }
+  // if (notificationUI.length > 0) {
+  //   notificationTooltip.classList.remove("hidden");
+  // } else {
+  //   notificationTooltip.classList.add("hidden");
+  // }
 
   console.log(notificationUI);
 });
