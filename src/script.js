@@ -45,6 +45,7 @@ socket.on("connect", () => {
 });
 
 socket.on("new-notification", async (notification) => {
+  console.log("notification of the champions");
   notificationUI.push(notification);
   console.log("hello notification", notification);
 
@@ -317,8 +318,6 @@ loginForm.addEventListener("submit", async (e) => {
   if (!emailOrUsername || !password) return;
 
   user = await loginUser({ emailOrUsername, password });
-
-  console.log(user, "user login form");
 
   if (user.user && user.user._id) {
     console.log(user.user._id);
