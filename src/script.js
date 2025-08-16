@@ -95,7 +95,7 @@ const loginUser = async (data) => {
       },
     });
 
-    console.log(res);
+    // console.log(res);
 
     return res.data.data;
   } catch (err) {
@@ -318,13 +318,14 @@ loginForm.addEventListener("submit", async (e) => {
   if (!emailOrUsername || !password) return;
 
   user = await loginUser({ emailOrUsername, password });
+  console.log(user, "user that login");
 
-  if (user.user && user.user._id) {
+  if (user && user.user && user.user._id) {
     console.log(user.user._id);
     socket.emit("join", user.user._id.toString());
   }
 
-  console.log(user.user);
+  console.log(user.user, "the user value");
   // console.log(user);
 });
 
