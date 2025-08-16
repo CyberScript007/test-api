@@ -342,6 +342,7 @@ loginForm.addEventListener("submit", async (e) => {
 });
 
 btnLike.addEventListener("click", async function () {
+  console.log(currentUser, "current user like");
   try {
     if (!currentUser) return;
 
