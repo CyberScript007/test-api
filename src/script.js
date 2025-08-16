@@ -329,7 +329,7 @@ loginForm.addEventListener("submit", async (e) => {
   if (!emailOrUsername || !password) return;
 
   const loginData = await loginUser({ emailOrUsername, password });
-  console.log(user, "user that login");
+  console.log(loginData, "user that login");
 
   if (loginData && loginData.user && loginData.user._id) {
     console.log(loginData.user._id);
@@ -337,13 +337,13 @@ loginForm.addEventListener("submit", async (e) => {
     socket.emit("join", loginData.user._id.toString());
   }
 
-  console.log(user.user, "the user value");
+  console.log(loginData.user, "the user value");
   // console.log(user);
 });
 
 btnLike.addEventListener("click", async function () {
   try {
-    if (!user) return;
+    if (!currentUser) return;
 
     const res = await axios({
       method: "POST",
@@ -386,7 +386,7 @@ btnTag.addEventListener("click", async function () {
 
 formComment.addEventListener("submit", async function (e) {
   e.preventDefault();
-  if (!user) return;
+  if (!currentUser) return;
   commentValue = await createCommentPost(commentText.value);
   console.log("hello bro baba");
 });
