@@ -40,6 +40,8 @@ let notificationCount = {
 const joinRoomSocket = () => {
   const storeUserId = localStorage.getItem("userID");
 
+  console.log(storeUserId);
+
   if (storeUserId) {
     currentUser = storeUserId;
     socket.emit("join", currentUser);
