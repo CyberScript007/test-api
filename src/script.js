@@ -41,7 +41,7 @@ let notificationCount = {
 const socket = io("http://127.0.0.1:5000");
 
 socket.on("connect", () => {
-  console.log(socket.id);
+  console.log(socket.id, "socket id");
 });
 
 socket.on("new-notification", async (notification) => {
