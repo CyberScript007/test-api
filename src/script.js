@@ -21,7 +21,7 @@ const svgBadge = document.querySelector(".svg__badge");
 const formComment = document.querySelector(".comment");
 const commentText = document.querySelector(".comment__text");
 
-let user,
+let currentUser,
   notificationUI = [],
   postImage,
   photo,
@@ -37,11 +37,22 @@ let notificationCount = {
   follow: 0,
 };
 
+const joinRoomSocket = () => {
+  const storeUserId = localStorage.get("userID");
+
+  if (storeUserId) {
+    currentUser = storeUserId;
+    socket.emit("join", currentUser);
+  }
+};
+
 // socket.io connection
 const socket = io("http://127.0.0.1:5000");
 
 socket.on("connect", () => {
   console.log(socket.id, "socket id");
+
+  joinRoomSocket();
 });
 
 socket.on("new-notification", async (notification) => {
@@ -317,12 +328,13 @@ loginForm.addEventListener("submit", async (e) => {
 
   if (!emailOrUsername || !password) return;
 
-  user = await loginUser({ emailOrUsername, password });
+  const loginData = await loginUser({ emailOrUsername, password });
   console.log(user, "user that login");
 
-  if (user && user.user && user.user._id) {
-    console.log(user.user._id);
-    socket.emit("join", user.user._id.toString());
+  if (loginData && loginData.user && loginData.user._id) {
+    console.log(loginData.user._id);
+    localStorage.setItem("userID", loginData.user._id.toString());
+    socket.emit("join", loginData.user._id.toString());
   }
 
   console.log(user.user, "the user value");
